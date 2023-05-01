@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block Title_head %}
+<title>Blogs</title>
+{% endblock Title_head %}
+
+
+{% block h1_header %}
+<h1>Listado de Blogs</h1>
+{% endblock h1_header %} 
+
+{% block Contenido %}
+
+<a href={% url 'inicio:crear_blog' %}>Crear nuevo</a>
+
+{% if object_list %}
+<ul>
+    {% for blog in object_list %}
+    <li><a href={% url 'inicio:detalle_blog' blog.id %}>{{blog}}</a></li>
+    <a href={% url 'inicio:modificar_blog' blog.id %}>Modificar</a> . <a href={% url 'inicio:eliminar_blog' blog.id %}>Eliminar</a>
+    {% endfor %}
+</ul>
+{% else %}
+<h3>No se encontraron blogs</h3>
+{% endif %}
+
+{% endblock Contenido %}

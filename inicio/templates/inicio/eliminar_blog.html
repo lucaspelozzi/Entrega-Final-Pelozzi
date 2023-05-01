@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block Title_head %}
+<title>Eliminar blog</title>
+{% endblock Title_head %}
+
+
+{% block h1_header %}
+<h1>Elimina tu blog</h1>
+{% endblock h1_header %}
+
+{% block Contenido %}
+
+<form action={% url 'inicio:eliminar_blog' blog.id %} method="post">
+    {% csrf_token %}
+    <h4>Desea eliminal el blog {{blog}}?</h4>
+    <button>Si, eliminar</button>
+</form>
+
+{% endblock Contenido %}

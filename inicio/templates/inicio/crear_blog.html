@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block Title_head %}
+<title>Crear blog</title>
+{% endblock Title_head %}
+
+
+{% block h1_header %}
+<h1>Crea tu blog</h1>
+{% endblock h1_header %}
+
+{% block Contenido %}
+
+<form action={% url 'inicio:crear_blog' %} method="post">
+    {% csrf_token %}
+    <table>
+        {{form}}
+    </table>
+    <button>Crear</button>
+</form>
+
+{% endblock Contenido %}
