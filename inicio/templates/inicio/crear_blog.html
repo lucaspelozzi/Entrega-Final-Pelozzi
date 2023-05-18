@@ -11,7 +11,7 @@
 
 {% block Contenido %}
 
-<form action={% url 'inicio:crear_blog' %} method="post">
+<form action={% url 'inicio:crear_blog' %} method="POST">
     {% csrf_token %}
     <table>
         {{form}}

@@ -24,7 +24,15 @@
             <div class="container">
                 <a class="navbar-brand" href={% url 'inicio:inicio' %}>Inicio</a>
                 <a class="navbar-brand" href={% url 'inicio:lista_blogs' %}>Blogs</a>
-                {% comment %} <a class="btn btn-primary" href="#signup">Sign Up</a> {% endcomment %}
+
+                {% if request.user.is_authenticated %}
+                <img src={{request.user.modelousers.avatar_pic}} alt="">
+                <a href={% url 'usuarios:editar_usuario' %}>{{request.user.username}}</a>
+                <a class="btn btn-primary" href={% url 'usuarios:logout' %}>Salir</a>
+                {% else %}
+                <a class="btn btn-primary" href={% url 'usuarios:login' %}>Ingresar</a>
+                <a class="btn btn-primary" href={% url 'usuarios:registro' %}>Registrarse</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->

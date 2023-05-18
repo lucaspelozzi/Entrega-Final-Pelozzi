@@ -11,9 +11,9 @@
 
 {% block Contenido %}
 
-<form action={% url 'inicio:eliminar_blog' blog.id %} method="post">
+<form action={% url 'inicio:eliminar_blog' blog.id %} method="POST">
     {% csrf_token %}
-    <h4>Desea eliminal el blog {{blog}}?</h4>
+    <h4>Desea eliminal el blog: {{blog}}?</h4>
     <button>Si, eliminar</button>
 </form>
 
