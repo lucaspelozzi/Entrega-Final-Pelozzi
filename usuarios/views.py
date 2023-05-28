@@ -5,9 +5,9 @@ from django.contrib.auth import authenticate, login as django_login
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from usuarios.models import ModeloUsers
 
 from usuarios.forms import FormularioCreacion, EditarUsuario
-from usuarios.models import ModeloUsers
 
 
 def login(request):
