@@ -20,6 +20,7 @@ def login(request):
             contrasenia = formulario.cleaned_data.get('password')
             usuario = authenticate(username=nombre_usuario, password=contrasenia)
             django_login(request, usuario)
+            ModeloUsers.objects.get_or_create(user=request.user)
             return redirect('inicio:inicio')
         else:
             return render(request, 'usuarios/login.html', {'formulario': formulario})
@@ -45,9 +46,6 @@ def registro(request):
 
 @login_required
 def editar_usuario(request):
-    
-    modelousers, formulado = ModeloUsers.objects.get_or_create(user=request.user)
-    
     if request.method == 'POST':
         formulario = EditarUsuario(request.POST, request.FILES, instance=request.user)
         
