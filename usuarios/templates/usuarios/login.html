@@ -12,14 +12,14 @@
 
 {% block Contenido %}
 
-{% if formulario.errors %}
+{% if formu.error %}
 <p style="color: red">Error</p>
 {% endif %}
 
 <form action={% url 'usuarios:login' %} method='POST'>
     {% csrf_token %}
     <table>
-        {{formulario}}
+        {{form}}
     </table>
     <button>Iniciar sesion</button>
 </form>

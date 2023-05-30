@@ -14,7 +14,7 @@
 <ul>
     <li>titulo: {{blog.titulo}}</li>
     <li>sub_titulo: {{blog.sub_titulo}}</li>
-    <li>contenido: {{blog.contenido}}</li>
+    <li>contenido: {{blog.contenido | safe}}</li>
     <li>autor: {{blog.autor}}</li>
     <li>fecha_creacion: {{blog.fecha_creacion}}</li>
 </ul>

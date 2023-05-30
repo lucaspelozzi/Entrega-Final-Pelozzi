@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
 {% block Title_head %}
-                    <title>Editar Usuario</title>
+<title>Editar Usuario</title>
 {% endblock Title_head %}
 
 
 {% block h1_header %}
-                    <h1>Editar Usuario</h1>
+<h1>Editar Usuario</h1>
 {% endblock h1_header %}
 
 
 {% block Contenido %}
 
-{% if formulario.errors %}
+{% if form.errors %}
 <p style="color: red">Error</p>
 {% endif %}
 
 <form action='' method='POST' enctype='multipart/form-data'>
     {% csrf_token %}
     <table>
-        {{formulario}}
+        {{form}}
     </table>
     <button type='button'><a class="navbar-brand" href={% url 'usuarios:cambiar_password' %}>Cambiar password</a></button>
     <button>Salvar cambios</button>

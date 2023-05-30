@@ -14,6 +14,7 @@
 <form action={% url 'inicio:crear_blog' %} method="POST">
     {% csrf_token %}
     <table>
+        {{form.media}}
         {{form}}
     </table>
     <button>Crear</button>

@@ -12,14 +12,14 @@
 
 {% block Contenido %}
 
-{% if formulario.errors %}
-<p style="color: red">Error</p>
+{% if form.errors %}
+<p style="color: red">Error en datos de registracion</p>
 {% endif %}
 
 <form action={% url 'usuarios:registro' %} method='POST'>
     {% csrf_token %}
     <table>
-        {{formulario}}
+        {{form}}
     </table>
     <button>Registrarse</button>
 </form>
