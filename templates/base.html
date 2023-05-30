@@ -27,7 +27,7 @@
 
                 {% if request.user.is_authenticated %}
                 {% if request.user.modelousers %}
-                <img src={{request.user.modelousers.avatar}} alt="" height='40p'>
+                <img src={{request.user.modelousers.avatar.url}} alt="" height='40p'>
                 {% endif %}
                 <a href={% url 'usuarios:editar_usuario' %}>{{request.user.username}}</a>
                 <a class="btn btn-primary" href={% url 'usuarios:logout' %}>Salir</a>
