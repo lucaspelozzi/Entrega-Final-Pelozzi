@@ -47,6 +47,9 @@ def registro(request):
 
 @login_required
 def editar_usuario(request):
+    
+    modelousers, creado = ModeloUsers.objects.get_or_create(user=request.user)
+    
     if request.method == 'POST':
         formulario = EditarUsuario(request.POST, request.FILES, instance=request.user)
         
