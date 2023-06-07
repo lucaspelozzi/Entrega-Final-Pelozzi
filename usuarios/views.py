@@ -3,8 +3,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from usuarios.models import ModeloUsers
@@ -69,3 +68,5 @@ def editar_usuario(request):
 class CambioPassword(LoginRequiredMixin, PasswordChangeView):
     template_name = 'usuarios/cambiar_password.html'
     success_url = reverse_lazy('usuarios:editar_usuario')
+    
+

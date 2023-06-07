@@ -26,14 +26,15 @@
                 <a class="navbar-brand" href={% url 'inicio:lista_blogs' %}>Blogs</a>
 
                 {% if request.user.is_authenticated %}
-                {% if request.user.modelousers %}
-                <img src={{request.user.modelousers.avatar.url}} alt="" height='40p'>
+                    {% if request.user.modelousers.avatar %}
+                        <img src={{request.user.modelousers.avatar.url}} alt="" height='40p'>
                 {% endif %}
                 <a href={% url 'usuarios:editar_usuario' %}>{{request.user.username}}</a>
                 <a class="btn btn-primary" href={% url 'usuarios:logout' %}>Salir</a>
                 {% else %}
                 <a class="btn btn-primary" href={% url 'usuarios:login' %}>Ingresar</a>
                 <a class="btn btn-primary" href={% url 'usuarios:registro' %}>Registrarse</a>
+                <a class="btn btn-primary" href={% url 'mensajeria:enviar_mensaje' %}>Enviar mensaje</a>
                 {% endif %}
             </div>
         </nav>

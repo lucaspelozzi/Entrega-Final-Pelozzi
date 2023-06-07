@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Enviar mensaje</h2>
+  <form method="post" action="{% url 'mensajeria:enviar_mensaje' %}">
+    {% csrf_token %}
+    <label for="destinatario">Destinatario:</label>
+    <select name="destinatario">
+      <option value="1">Usuario 1</option>
+      <option value="2">Usuario 2</option>
+      <!-- Opciones para seleccionar el destinatario -->
+    </select>
+    <br>
+    <label for="contenido">Contenido:</label>
+    <textarea name="contenido"></textarea>
+    <br>
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}
