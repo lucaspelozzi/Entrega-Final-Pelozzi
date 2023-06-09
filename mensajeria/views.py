@@ -11,21 +11,26 @@ from mensajeria.forms import MensajeForm
 @method_decorator(login_required, name='dispatch')
 class EnviarMensaje(LoginRequiredMixin, View):
     template_name = 'mensajeria/enviar_mensaje.html'
-    formulario = MensajeForm
+    form_class = MensajeForm
 
     def get(self, request):
-        return render(request, self.template_name)
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-        remitente = request.user
-        destinatario_id = request.POST.get('destinatario')
-        destinatario = User.objects.get(id=destinatario_id)
-        contenido = request.POST.get('contenido')
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            remitente = request.user
+            destinatario_id = form.cleaned_data['destinatario'].id
+            destinatario = User.objects.get(id=destinatario_id)
+            contenido = form.cleaned_data['contenido']
 
-        mensaje = Mensaje(sender=remitente, recipient=destinatario, content=contenido)
-        mensaje.save()
+            mensaje = Mensaje(sender=remitente, recipient=destinatario, content=contenido)
+            mensaje.save()
 
-        return redirect('mensajeria/mensajes_enviados')
+            return redirect('mensajeria:mensajes_enviados')
+
+        return render(request, self.template_name, {'form': form})
 
 
 @method_decorator(login_required, name='dispatch')

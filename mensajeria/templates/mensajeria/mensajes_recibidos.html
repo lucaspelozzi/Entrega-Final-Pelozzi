@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <h2>Mensajes recibidos</h2>
-  <ul>
-    {% for mensaje in mensajes %}
-      <li>
-        <strong>Remitente:</strong> {{ mensaje.sender }}
-        <br>
-        <strong>Contenido:</strong> {{ mensaje.content }}
-      </li>
-    {% empty %}
-      <li>No hay mensajes recibidos.</li>
-    {% endfor %}
-  </ul>
-{% endblock %}
+{% block Contenido %}
+  <h2>Mensajes Recibidos</h2>
+  {% if mensajes %}
+    <ul>
+      {% for mensaje in mensajes %}
+        <li>
+          <strong>De:</strong> {{ mensaje.sender.username }}
+          <br>
+          <strong>Contenido:</strong> {{ mensaje.content }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay mensajes recibidos.</p>
+  {% endif %}
+{% endblock Contenido %}

@@ -6,6 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from inicio.models import Blog
+from inicio.forms import BlogForm
+
 
 
 def inicio(request):
@@ -26,18 +28,16 @@ class BlogDetailView(DetailView):
     model = Blog
     template_name = "inicio/detelle_blog.html"
 
-
 class BlogCreateView(CreateView):
     model = Blog
     template_name = "inicio/crear_blog.html"
-    fields = ['titulo','sub_titulo','contenido','autor','fecha_creacion']
+    form_class = BlogForm
     success_url = reverse_lazy('inicio:lista_blogs')
 
-    
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
     template_name = "inicio/modificar_blog.html"
-    fields = ['titulo','sub_titulo','contenido','autor','fecha_creacion']
+    form_class = BlogForm
     success_url = reverse_lazy('inicio:lista_blogs')
     
 

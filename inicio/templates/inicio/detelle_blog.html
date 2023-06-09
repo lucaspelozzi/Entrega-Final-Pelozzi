@@ -4,20 +4,24 @@
 <title>Blog</title>
 {% endblock Title_head %}
 
-
 {% block h1_header %}
-<h1>Blog: {{blog}}</h1>
+<h1>Blog: {{ blog }}</h1>
 {% endblock h1_header %} 
 
 {% block Contenido %}
 
-<ul>
-    <li>titulo: {{blog.titulo}}</li>
-    <li>sub_titulo: {{blog.sub_titulo}}</li>
-    <li>contenido: {{blog.contenido | safe}}</li>
-    <li>autor: {{blog.autor}}</li>
-    <li>fecha_creacion: {{blog.fecha_creacion}}</li>
-</ul>
-<a href={% url 'inicio:modificar_blog' blog.id %}>Modificar</a> . <a href={% url 'inicio:eliminar_blog' blog.id %}>Eliminar</a>
+<form action="" method="POST" enctype='multipart/form-data'>
+    <ul>
+        <li>titulo: {{ blog.titulo }}</li>
+        <li>sub_titulo: {{ blog.sub_titulo }}</li>
+        <li>contenido: {{ blog.contenido | safe }}</li>
+        <li>autor: {{ blog.autor }}</li>
+        <li>fecha_creacion: {{ blog.fecha_creacion }}</li>
+        {% if blog.imagen %}
+            <li>imagen: <img src="{{ blog.imagen_url }}"></li>
+        {% endif %}
+    </ul>
+    <a href={% url 'inicio:modificar_blog' blog.id %}>Modificar</a> . <a href={% url 'inicio:eliminar_blog' blog.id %}>Eliminar</a>
+</form>
 
 {% endblock Contenido %}

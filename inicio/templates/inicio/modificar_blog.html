@@ -11,13 +11,14 @@
 
 {% block Contenido %}
 
-<form action={% url 'inicio:modificar_blog' blog.id %} method="post">
+<form action="{% url 'inicio:modificar_blog' blog.id %}" method="post" enctype='multipart/form-data'>
     {% csrf_token %}
-    <table>
-        {{form.media}}
-        {{form}}
-    </table>
-    <button>Modificar</button>
+    <ul>
+        {% for field in form %}
+            <li>{{ field.label_tag }} {{ field }}</li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Modificar</button>
 </form>
 
 {% endblock Contenido %}
