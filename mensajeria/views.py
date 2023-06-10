@@ -15,7 +15,8 @@ class EnviarMensaje(LoginRequiredMixin, View):
 
     def get(self, request):
         form = self.form_class()
-        return render(request, self.template_name, {'form': form})
+        mensajes = Mensaje.objects.filter(recipient=request.user)
+        return render(request, self.template_name, {'form': form, 'mensajes': mensajes})
 
     def post(self, request):
         form = self.form_class(request.POST)

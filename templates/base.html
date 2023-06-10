@@ -31,7 +31,7 @@
                     {% endif %}
                     <a href="{% url 'usuarios:editar_usuario' %}">{{ request.user.username }}</a>
                     <a class="btn btn-primary" href="{% url 'usuarios:logout' %}">Salir</a>
-                    <a class="btn btn-primary" href="{% url 'mensajeria:enviar_mensaje' %}">Enviar mensaje</a>
+                    <a class="btn btn-primary" href="{% url 'mensajeria:enviar_mensaje' %}">Mensajeria</a>
                 {% else %}
                     <a class="btn btn-primary" href="{% url 'usuarios:login' %}">Ingresar</a>
                     <a class="btn btn-primary" href="{% url 'usuarios:registro' %}">Registrarse</a>
@@ -54,6 +54,24 @@
         </header>
 
         {% block Contenido %}{% endblock Contenido %}
+        <div class="mensajes-recibidos">
+            <h3>Mensajes Recibidos:</h3>
+            {% if mensajes %}
+              <ul>
+                {% for mensaje in mensajes %}
+                  <li>
+                    <strong>De:</strong> {{ mensaje.sender.username }}
+                    <br>
+                    <strong>Contenido:</strong> {{ mensaje.content }}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>No hay mensajes recibidos.</p>
+            {% endif %}
+          </div>
+          {% block MensajeForm %}
+          {% endblock MensajeForm %}
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
@@ -79,14 +97,7 @@
                 </div>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script {% static 'js/scripts.js"' %}></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
